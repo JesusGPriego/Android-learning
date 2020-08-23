@@ -3,7 +3,7 @@ Here I will be uploading my android development learning progress.
 
 # Tres en raya:
 
-In this project I'm showing the next adquired skills:
+In this project I'm showing the next acquired skills:
 
 * Work with GridLayout.
 * Use of MediaPlayer class.
