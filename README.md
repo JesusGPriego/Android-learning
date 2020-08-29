@@ -40,3 +40,10 @@ During the countdown, background sound is a tictac, that can we muted.
 When the countdown ends, tictac sound is over and the alarm rings.
 If the user tap stop button during the countdown, everything stops and
 the countdown's timer is resetted to 30 seconds.
+
+
+#MultipleActivityDemo
+
+In this project I'm showing the next acquired skill:
+
+*Passing info through activities (in this case, from second to main activity.)
