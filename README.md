@@ -42,7 +42,7 @@ If the user tap stop button during the countdown, everything stops and
 the countdown's timer is resetted to 30 seconds.
 
 
-#MultipleActivityDemo
+# MultipleActivityDemo
 
 In this project I'm showing the next acquired skill:
 
