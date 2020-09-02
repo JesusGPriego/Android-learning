@@ -96,7 +96,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //If permission is granted, it clear map, seta marker and moves to the location.
                 locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
                 lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                lastKnownLatLng = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
             }
         }
     }
