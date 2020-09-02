@@ -1,4 +1,5 @@
 # Android-learning
+
 Here I will be uploading my android development learning progress.
 
 # Tres en raya:
@@ -20,8 +21,8 @@ An always fun game, that was fun to develop!
 
 In this project I'm showing the next acquired skills:
 
-*Work with seekbar.
-*Work with ListViews.
+* Work with seekbar.
+* Work with ListViews.
 
 It is a simple table times program made with ListView and Seekbar.
 range is 1 to 20, and the table is selected with a seekbar. 
@@ -46,4 +47,20 @@ the countdown's timer is resetted to 30 seconds.
 
 In this project I'm showing the next acquired skill:
 
-*Passing info through activities (in this case, from second to main activity).
+* Passing info through activities (in this case, from second to main activity).
+
+# Location Saver
+
+In this Project Im showing the next acquired skills:
+
+* Permissions request.
+* Getting user's location.
+* Adding markers to a map and moving the camera to that point.
+* Getting location info from a geocoder.
+* Use of static vars.
+* Passing info throug activities.
+
+This app allows the user to save locations. Just need to longclick a point in the map, 
+and it will be added to the list.
+If no Address if available for the location tapped, it will get a date for that location instead.
+
