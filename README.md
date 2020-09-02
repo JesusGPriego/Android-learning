@@ -46,4 +46,4 @@ the countdown's timer is resetted to 30 seconds.
 
 In this project I'm showing the next acquired skill:
 
-*Passing info through activities (in this case, from second to main activity.)
+*Passing info through activities (in this case, from second to main activity).
