@@ -1,13 +1,17 @@
 package com.example.multipleactivitydemo;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        onListViewLongClick();
     }
 
     @Override
@@ -52,11 +57,32 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 0){
             if(resultCode == RESULT_OK){
                 friendList.add(data.getStringExtra(Intent.EXTRA_TEXT));
-                friendList.add((data.getStringExtra("maria")));
                 arrayAdapter.notifyDataSetChanged();
             }
         }
+    }
 
+    public void onListViewLongClick(){
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                ViewGroup viewGroup = findViewById(android.R.id.content);
+                View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.customview, viewGroup, false);
+                builder.setView(dialogView);
+                final AlertDialog alertDialog = builder.create();
+                Button buttonOk = (Button) findViewById(R.id.buttonOk);
 
+                alertDialog.show();
+                buttonOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        alertDialog.dismiss();
+                    }
+                });
+                return false;
+            }
+        });
     }
 }
