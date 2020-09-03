@@ -6,7 +6,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -15,6 +17,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,6 +34,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.locationsaver.MainActivity.savedLatLng;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
@@ -45,6 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Intent intent;
     private Location lastKnownLocation;
     private LatLng lastKnownLatLng;
+    private SharedPreferences sharedPreferences;
 
 
 
@@ -60,8 +66,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Vars init.
         intent = getIntent();
         listPosition = intent.getIntExtra("listPosition", 0);
-
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+        sharedPreferences = this.getSharedPreferences("com.example.locationsaver", Context.MODE_PRIVATE);
         //Method calls
     }
 
@@ -91,11 +97,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if(grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED){
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
                 //If permission is granted, it clear map, seta marker and moves to the location.
                 locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
                 lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                lastKnownLatLng = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+            }else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             }
         }
     }
@@ -104,7 +113,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
-                lastKnownLocation = location;
+
             }
         };
         //Checking iff permmissions is granted or not.
@@ -112,7 +121,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
             lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            lastKnownLatLng = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+            moveCameraToLocation(lastKnownLatLng, "title");
         }else{ //if not, asks for permission.
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
@@ -121,7 +130,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     /**
      * Moves the camera to the location
      * @param latLng location where the user is.
-     * @param title Is the marker's title.
+     * @param title Is the marker's title.    public void saveDataIntoSharedPreferences(){
+        String stringToSave = "";
+        for (int i=0;i<)
+    }
+
      */
     public void moveCameraToLocation(LatLng latLng, String title){
         if(latLng!=null) {
@@ -143,9 +156,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             .position(latLng)
             .title(address));
         MainActivity.locationAddressArrayList.add(address);
-        MainActivity.savedLatLng.add(latLng);
+        savedLatLng.add(latLng);
         MainActivity.locationArrayAdapter.notifyDataSetChanged();
-
+        saveAddressData(sharedPreferences);
+        Toast.makeText(getApplicationContext(), "Place added", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -181,4 +195,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         return address;
     }
+
+    /**
+     * Converts locationAddresssArrayList and savedLatLng data </br>
+     * into Strings. Then writes those strings in sharedPreferences.
+     * @param sharedPreferences this is where the data will be stored.
+     */
+    public static void saveAddressData(SharedPreferences sharedPreferences) {
+
+        String addressToSave;
+        String latitudesToSave;
+        String longitudesToSave;
+        StringBuilder addressSB = new StringBuilder();
+        StringBuilder latsSB = new StringBuilder();
+        StringBuilder longsSB = new StringBuilder();
+
+        for (int i = 0; i < MainActivity.locationAddressArrayList.size(); i++) {
+            addressSB.append(MainActivity.locationAddressArrayList.get(i));
+            if (i < MainActivity.locationAddressArrayList.size() - 1) {
+                addressSB.append("%20");
+            }
+        }
+        for (int i = 0; i < savedLatLng.size(); i++) {
+            latsSB.append(savedLatLng.get(i).latitude);
+            longsSB.append(savedLatLng.get(i).longitude);
+            latsSB.append("%20");
+            longsSB.append("%20");
+        }
+        addressToSave = addressSB.toString();
+        latitudesToSave = latsSB.toString();
+        longitudesToSave = longsSB.toString();
+        sharedPreferences.edit().putString("Addresses", addressToSave).apply();
+        sharedPreferences.edit().putString("latitudes", latitudesToSave).apply();
+        sharedPreferences.edit().putString("longitudes", longitudesToSave).apply();
+
+
+    }
+
 }
