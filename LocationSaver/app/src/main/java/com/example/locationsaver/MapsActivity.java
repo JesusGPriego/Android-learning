@@ -86,7 +86,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             LatLng savedLatLng = MainActivity.savedLatLng.get(listPosition - 1);
             moveCameraToLocation(savedLatLng, intent.getStringExtra("Address"));
         }
-        
+
     }
 
 
@@ -96,11 +96,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     public void getUserLocation(){
         if(ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
+                Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED){
             //Permission not granted
             if(ActivityCompat.shouldShowRequestPermissionRationale(MapsActivity.this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION)){
+                    Manifest.permission.ACCESS_FINE_LOCATION)){
                 //Show why user has to grant permission
                 new AlertDialog.Builder(this)
                         .setTitle("Location permission is required")
@@ -109,7 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 ActivityCompat.requestPermissions(MapsActivity.this,
-                                        new String[] {Manifest.permission.ACCESS_COARSE_LOCATION},
+                                        new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
                                         1);
                             }
                         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -121,7 +121,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }else{
                 //No explanation needed.
                 ActivityCompat.requestPermissions(MapsActivity.this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         1);
 
             }
