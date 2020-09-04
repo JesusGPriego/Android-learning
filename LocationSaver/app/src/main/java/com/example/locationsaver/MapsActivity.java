@@ -86,8 +86,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             LatLng savedLatLng = MainActivity.savedLatLng.get(listPosition - 1);
             moveCameraToLocation(savedLatLng, intent.getStringExtra("Address"));
         }
-        Toast.makeText(getApplicationContext(), "latitude: " + latitude +
-                " longitude" + longitude, Toast.LENGTH_SHORT).show();
+        
     }
 
 

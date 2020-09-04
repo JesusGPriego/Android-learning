@@ -16,3 +16,10 @@ A dialog will be shown where he can edit or delete the address.
 
 There is a "delete list" button that i dont think is useful, but it was a good learning on how to
 delete the sotred data.
+
+# Updated:
+
+Due to having some problems with LocationManager and LocationListener to get user's location
+(worked well in the emulator, but not in a real device), I've decided to look for another way
+to get it. So now user's location obtained using FusedLocationProviderClient. 
+At least in my device, it isnt really accurate, but works.
