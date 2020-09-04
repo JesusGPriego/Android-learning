@@ -1,35 +1,36 @@
 package com.example.locationsaver;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -40,18 +41,17 @@ import static com.example.locationsaver.MainActivity.savedLatLng;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     private GoogleMap mMap;
+    public FusedLocationProviderClient fusedLocationClient;
+
     /**
      * ArrayList that stores the locations saved.
      */
 
     private int listPosition;
-    private LocationManager locationManager;
-    private LocationListener locationListener;
     private Intent intent;
-    private Location lastKnownLocation;
-    private LatLng lastKnownLatLng;
     private SharedPreferences sharedPreferences;
-
+    private double latitude;
+    private double longitude;
 
 
     @Override
@@ -59,6 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -66,9 +67,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Vars init.
         intent = getIntent();
         listPosition = intent.getIntExtra("listPosition", 0);
-        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         sharedPreferences = this.getSharedPreferences("com.example.locationsaver", Context.MODE_PRIVATE);
+
         //Method calls
+
     }
 
 
@@ -77,65 +79,78 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setOnMapLongClickListener(this);
         listPosition = intent.getIntExtra("listPosition", 0);
-        setUpLocationListener();
-        if(listPosition == 0) {
-            mMap.clear();
-            moveCameraToLocation(lastKnownLatLng, "You are here");
+        if (listPosition == 0) {
+            getUserLocation();
+
+        } else {
+            LatLng savedLatLng = MainActivity.savedLatLng.get(listPosition - 1);
+            moveCameraToLocation(savedLatLng, intent.getStringExtra("Address"));
+        }
+        Toast.makeText(getApplicationContext(), "latitude: " + latitude +
+                " longitude" + longitude, Toast.LENGTH_SHORT).show();
+    }
+
+
+    /**
+     * Checks if permission needed has been granted, if not, it will ask for it.
+     * @return
+     */
+    public void getUserLocation(){
+        if(ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED){
+            //Permission not granted
+            if(ActivityCompat.shouldShowRequestPermissionRationale(MapsActivity.this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)){
+                //Show why user has to grant permission
+                new AlertDialog.Builder(this)
+                        .setTitle("Location permission is required")
+                        .setMessage("Need location permission to get ur location")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                ActivityCompat.requestPermissions(MapsActivity.this,
+                                        new String[] {Manifest.permission.ACCESS_COARSE_LOCATION},
+                                        1);
+                            }
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).create().show();
+            }else{
+                //No explanation needed.
+                ActivityCompat.requestPermissions(MapsActivity.this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                        1);
+
+            }
         }else{
-           LatLng savedLatLng = MainActivity.savedLatLng.get(listPosition-1);
-           moveCameraToLocation(savedLatLng, intent.getStringExtra("Address"));
+            //If permission is granted, it will get the user location.
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+                            moveCameraToLocation(new LatLng(latitude, longitude),
+                                    "You are here");
+
+                        }
+                    });
+
         }
     }
 
-    /**
-     * Asking for GPS permission.
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
-     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
 
-        if(grantResults.length > 0 && grantResults[0] != PackageManager.PERMISSION_GRANTED){
-            if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                //If permission is granted, it clear map, seta marker and moves to the location.
-                locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
-                lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                lastKnownLatLng = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
-            }else{
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            }
         }
     }
 
-    public void setUpLocationListener(){
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(@NonNull Location location) {
-
-            }
-        };
-        //Checking iff permmissions is granted or not.
-        //If it is granted, moves the camare and adds a marker to the last known position.
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
-            lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            moveCameraToLocation(lastKnownLatLng, "title");
-        }else{ //if not, asks for permission.
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        }
-    }
-
-    /**
-     * Moves the camera to the location
-     * @param latLng location where the user is.
-     * @param title Is the marker's title.    public void saveDataIntoSharedPreferences(){
-        String stringToSave = "";
-        for (int i=0;i<)
-    }
-
-     */
     public void moveCameraToLocation(LatLng latLng, String title){
         if(latLng!=null) {
 
