@@ -59,6 +59,8 @@ In this Project Im showing the next acquired skills:
 * Getting location info from a geocoder.
 * Use of static vars.
 * Passing info throug activities.
+* Creating dialog to edit a list.
+* Making data permanent using shared preferences.
 
 This app allows the user to save locations. Just need to longclick a point in the map, 
 and it will be added to the list.
