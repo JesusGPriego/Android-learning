@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Pizza House</string>
+    <string name="name">Pizza House</string>
+    <string name="imageContentDescription">background</string>
+    <string name="mainScreenButtonText">Hacer pedido</string>
+    <string name="menu_aboutus">Sobre nosotros</string>
+    <string name="menu_help">Ayuda</string>
+    <string name="registro_header">Datos del cliente:</string>
+    <string name="lblName">Nombre:</string>
+    <string name="lblTelefono">Teléfono:</string>
+    <string name="lblRecogida">Recogida:</string>
+    <string name="lblDireccion">Dirección:</string>
+    <string name="nameHint">Nombre</string>
+    <string name="phoneHint">Teléfono</string>
+    <string name="direccionHint">Dirección</string>
+    <string name="pizza_header">Pizzas:</string>
+    <string name="bebida_header">Bebidas:</string>
+    <string name="buttonLimpiar">Limpiar</string>
+    <string name="checkbox_text">Mayor de edad</string>
+    <string name="acerca_de"><![CDATA[
+    Pizza House<br>
+    Jesús García Priego<br>
+    2021<br><br>
+    <p>lorem ipsum dolor sit amet…</p>
+]]></string>
+</resources>

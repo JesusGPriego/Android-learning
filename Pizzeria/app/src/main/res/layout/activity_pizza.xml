@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DAD9D9"
+    tools:context=".PizzaActivity">
+
+
+    <TextView
+        android:id="@+id/headerPizza"
+        style="@style/header"
+        android:text="@string/pizza_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059" />
+
+    <ImageButton
+        android:id="@+id/ButtonAvanzarPizza"
+        style="@style/forwardButtonStyle"
+        android:onClick="avanzarPizza"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.979"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.907" />
+
+    <ImageButton
+        android:id="@+id/buttonAtrasPizza"
+        style="@style/backButtonStyle"
+        android:onClick="atrasPizza"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.909" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPizza"
+        android:layout_width="0dp"
+        android:layout_height="380dp"
+        app:layout_constraintBottom_toTopOf="@+id/ButtonAvanzarPizza"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerPizza" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        style="@style/CleanButtonStyle"
+        android:onClick="pizzaReset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ButtonAvanzarPizza"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonAtrasPizza"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewPizza"
+        app:layout_constraintVertical_bias="0.39" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

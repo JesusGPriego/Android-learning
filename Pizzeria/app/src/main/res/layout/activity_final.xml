@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FinalActivity">
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/launchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="resetApp"
+        android:text="Hecho!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView3"
+        app:layout_constraintVertical_bias="0.97" />
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:fillViewport="true"
+        android:paddingBottom="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.050000012">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:isScrollContainer="true">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageViewFinalLogo"
+                        android:layout_width="102dp"
+                        android:layout_height="102dp"
+                        android:layout_column="1"
+                        app:srcCompat="@drawable/logo" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_gravity="bottom|center"
+                        android:layout_span="3" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:text="Cliente:"
+                        android:textSize="24sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_column="1"
+                        android:text="Nombre:" />
+
+                    <TextView
+                        android:id="@+id/TextViewClienteNombre"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_span="3" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="Teléfono:" />
+
+                    <TextView
+                        android:id="@+id/textViewClienteTelefono"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_span="3" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="Recogida" />
+
+                    <TextView
+                        android:id="@+id/textViewClienteRecogida"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_span="3" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowDireccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="Direccion:" />
+
+                    <TextView
+                        android:id="@+id/textViewClieneDireccion"
+                        style="@style/tableText"
+                        android:layout_height="match_parent"
+                        android:layout_column="2"
+                        android:layout_span="3" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowPizza1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:text="Pizzas:"
+                        android:textSize="24sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowPizza2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1" />
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:text="Precio" />
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:text="Cantidad" />
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:layout_marginStart="4dp"
+                        android:text="Subtotal" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowPizza3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textViewPizzaSeleccionada"
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1" />
+
+                    <TextView
+                        android:id="@+id/textViewPrecioPizzas"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2" />
+
+                    <TextView
+                        android:id="@+id/textViewCantidadPizzas"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3" />
+
+                    <TextView
+                        android:id="@+id/textViewSubtotalPizzas"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowBebida1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:text="Bebidas:"
+                        android:textSize="24sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowBebida2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible">
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1" />
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="Precio" />
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="Cantidad" />
+
+                    <TextView
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="Subtotal" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowBebida3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/textViewBebidaSeleccionada"
+                        style="@style/tableText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1" />
+
+                    <TextView
+                        android:id="@+id/textViewPrecioBebidas"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2" />
+
+                    <TextView
+                        android:id="@+id/textViewCantidadBebidas"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3" />
+
+                    <TextView
+                        android:id="@+id/textViewSubtotalBebidas"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_margin="5dp"
+                        android:text="A domicilio"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/textViewRecargo"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_span="3" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:text="Total:"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/textViewPrecioTotal"
+                        style="@style/tableText"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_span="3" />
+
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
