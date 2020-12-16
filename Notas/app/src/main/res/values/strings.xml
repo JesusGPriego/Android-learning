@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Notas</string>
+    <string name="about">Jesús García Priego, 2020</string>
+    <string name="contact">Suleware@gmail.com</string>
+</resources>
