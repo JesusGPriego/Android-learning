@@ -81,3 +81,13 @@ Next to it, menu is showed, and the user can choose or not the pizzas he want.
 Next to it, the drinks are showed. If the user select beer, he need to check his age.
 Finally, a summary of the order.
 
+#Notas
+
+#Skills showed in this app:
+
+*RecyclerView onClick and onLongClick
+*Persistent data with SharedPreferences
+*auto saving Notes on exit
+
+Basic Note app. The user can add as many notes he wants. Note has 2 components: title and the note itself.
+
