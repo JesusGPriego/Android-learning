@@ -66,14 +66,14 @@ This app allows the user to save locations. Just need to longclick a point in th
 and it will be added to the list.
 If no Address if available for the location tapped, it will get a date for that location instead.
 
-#Pizzeria
+# Pizzeria
 
 In this Project Im showing the next acquired skills:
 
- *RecyclerView + RecyclerView OnClick 
- *Custom Toolbar and Menu
- *Custom styles
- *Object Serialization to add them in Intent
+ * RecyclerView + RecyclerView OnClick 
+ * Custom Toolbar and Menu
+ * Custom styles
+ * Object Serialization to add them in Intent
 
 This app is basically a pizza restaurant app. In the first Activity, is showed the restaurant logo, a toolbar and a menu.
 In the next, the user can set his data (name,telephone, and optinal delivery).
@@ -81,13 +81,13 @@ Next to it, menu is showed, and the user can choose or not the pizzas he want.
 Next to it, the drinks are showed. If the user select beer, he need to check his age.
 Finally, a summary of the order.
 
-#Notas
+# Notas
 
 Skills showed in this app:
 
- *RecyclerView onClick and onLongClick
- *Persistent data with SharedPreferences
- *auto saving Notes on exit
+ * RecyclerView onClick and onLongClick
+ * Persistent data with SharedPreferences
+ * auto saving Notes on exit
 
 Basic Note app. The user can add as many notes he wants. Note has 2 components: title and the note itself.
 
