@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.mipaint.control.PaintSurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/FABbrushes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="#E6E7EA"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.928"
+        app:srcCompat="@drawable/brush" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48000002">
+
+        <ImageButton
+            android:id="@+id/imageButtonStar"
+            style="@style/buttonStyle"
+            android:background="@drawable/default_button_background"
+            app:srcCompat="@drawable/star" />
+
+        <ImageButton
+            android:id="@+id/imageButtonYellowCircle"
+            style="@style/buttonStyle"
+            android:background="@drawable/default_button_background"
+            app:srcCompat="@drawable/yellowcircle" />
+
+        <ImageButton
+            android:id="@+id/imageButtonRedCircle"
+            style="@style/buttonStyle"
+            android:background="@drawable/default_button_background"
+            app:srcCompat="@drawable/redcircle" />
+
+        <ImageButton
+            android:id="@+id/imageButtonGreenCircle"
+            style="@style/buttonStyle"
+            android:background="@drawable/default_button_background"
+            app:srcCompat="@drawable/greencircle" />
+
+        <ImageButton
+            android:id="@+id/imageButtonBlueCicle"
+            style="@style/buttonStyle"
+            android:background="@drawable/default_button_background"
+            app:srcCompat="@drawable/bluecircle" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

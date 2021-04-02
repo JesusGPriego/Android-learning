@@ -77,13 +77,13 @@ In this Project Im showing the next acquired skills:
 
 This app is basically a pizza restaurant app. In the first Activity, is showed the restaurant logo, a toolbar and a menu.
 In the next, the user can set his data (name,telephone, and optinal delivery).
-Next to it, menu is showed, and the user can choose or not the pizzas he want.
-Next to it, the drinks are showed. If the user select beer, he need to check his age.
+Next to it, menu is displayed, and the user can choose or not the pizzas he want.
+Next to it, the drinks are displayed. If the user select beer, he need to check his age.
 Finally, a summary of the order.
 
 # Notas
 
-Skills showed in this app:
+Skills displayed in this app:
 
  * RecyclerView onClick and onLongClick
  * Persistent data with SharedPreferences
@@ -91,3 +91,13 @@ Skills showed in this app:
 
 Basic Note app. The user can add as many notes he wants. Note has 2 components: title and the note itself.
 
+# MiPaint
+
+This app is a simple drawing app. It includes some different pencils, an "undo" function and a Clear Canvas function. 
+
+The undo function was interesting to develop, and is the only reason why I included it. Challence complete!. 
+
+Acquired skills displayed: 
+ * Working with SurfaceView, creating custom views.
+ * OnTouch events handeling.
+ * Subthreading ussage.

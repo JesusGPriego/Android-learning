@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Mi Paint</string>
+    <string name="main_activity_button_text">Nuevo Dibujo</string>
+</resources>
