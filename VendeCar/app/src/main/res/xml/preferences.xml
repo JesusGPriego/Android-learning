@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Datos a mostrar">
+        <SwitchPreference
+            android:layout_width="match_parent"
+            android:defaultValue="false"
+            android:key="only_sold_cars"
+            android:title="Mostrar solo coches no vendidos"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

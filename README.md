@@ -101,3 +101,13 @@ Acquired skills displayed:
  * Working with SurfaceView, creating custom views.
  * OnTouch events handeling.
  * Subthreading ussage.
+
+
+
+# VendeCar 
+
+This app is a distributor car's management system. It lets the user to store cars in the database, modify and delete them.
+
+Acquired skills displayed:
+ * Room framework.
+ * CMV pattern.

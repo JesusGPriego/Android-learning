@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="infoLabel" parent="Widget.MaterialComponents.TextView">
+
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/infoLabelColor</item>
+
+    </style>
+
+
+    <style name="technicalDetails" parent="Widget.MaterialComponents.TextView">
+
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/infoLabelColor</item>
+
+    </style>
+
+    <style name="editTextDetails" parent="Widget.MaterialComponents.TextView">
+
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:backgroundTint">@color/infoLabelColor</item>
+        <item name="android:inputType">number</item>
+        <item name="android:digits">0123456789</item>
+
+    </style>
+
+
+
+</resources>

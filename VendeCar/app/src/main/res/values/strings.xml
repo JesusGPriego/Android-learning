@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">VendeCar</string>
+    <string-array name="marcas">
+        <item>Seleccione marca</item>
+        <item>BMW</item>
+        <item>Audi</item>
+        <item>Seat</item>
+        <item>Ford</item>
+        <item>Nissan</item>
+        <item>Citroen</item>
+        <item>Renault</item>
+        <item>Kia</item>
+    </string-array>
+
+</resources>
